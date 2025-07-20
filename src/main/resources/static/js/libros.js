@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     cargarLibros();
 });
+
 // ========================== Carga ============================
 /**
  * Funcion que carga todos los libros en la tabla
@@ -27,23 +28,33 @@ function cargarTabla(libros){
                       <div class="d-flex align-items-center">
                         <img src="https://images.vexels.com/media/users/3/242555/isolated/preview/3236dda9ad7dc9905f870dae152ca56a-elementos-de-pegatinas-de-regreso-a-la-escuela-9.png" 
                              class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Libro">
-                        <div class="h6 mb-0 lh-1">${libro.id}</div>
+                        <div class="h6 mb-0 lh-1">${libro.titulo}</div>
                       </div>
                     </td>
-                    <td>${libro.titulo}</td>
                     <td>${libro.autor}</td>
                     <td>${libro.genero}</td>
                     <td>${libro.año}</td>
                     <td>${libro.finalizacion}</td>
+                    <td>
+                    <div class="star-rating disabled">
+                        <i class="bi bi-star-fill" data-value="1"></i>
+                        <i class="bi bi-star-fill" data-value="2"></i>
+                        <i class="bi bi-star-fill" data-value="3"></i>
+                        <i class="bi bi-star-fill" data-value="4"></i>
+                        <i class="bi bi-star-fill" data-value="5"></i>
+                    </div>
+                    </td>
                     <td class="text-end">
-                        <button class="btn btn-primary btn-sm" onclick="activarEdicion(this)(${libro.id})"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-primary btn-sm" onclick="activarEdicion(this, ${libro.id})"><i class="bi bi-pencil"></i></button>
                         <button class="btn btn-danger btn-sm" onclick="borrarLibro(${libro.id})"><i class="bi bi-trash"></i></button>
                     </td>
                 `;
 
                 tbody.appendChild(fila);
+                activarRating(fila, libro.rating);
             });
 }
+
 // ========================== Borrar ============================
 /**
  * Funcion que borra un libro enviando su id y llamando a http://localhost:8080/libro/borrar/${id}
@@ -65,24 +76,26 @@ function borrarLibro(id) {
         }
     });
 }
+
 // ========================== Edicion ============================
 /**
  * Funcion que activa el modo edición
  */
-function activarEdicion(boton) {
+function activarEdicion(boton, id) {
     const fila = boton.closest("tr");
     const celdas = fila.querySelectorAll("td");
 
-    // Guarda el ID en un atributo 
-    const id = celdas[0].innerText;
-
-    // Convierte las celdas en inputs (excepto el ID y los botones)
-    for (let i = 1; i <= 5; i++) {
+    // Convierto las celdas en inputs 
+    for (let i = 0; i <= 4; i++) {
         const valor = celdas[i].innerText;
         celdas[i].innerHTML = `<input type="text" value="${valor}" class="form-control form-control-sm">`;
     }
 
-    // Cambia el botón por Guardar y Cancelar
+    const ratingDiv = fila.querySelector('.star-rating');
+    ratingDiv.classList.remove('disabled'); //Quito el disabled para poder editar las estrellas
+    activarRating(fila);
+
+    // Cambio el botón por Guardar y Cancelar
     celdas[6].innerHTML = `
         <button class="btn btn-success btn-sm rounded-circle" onclick="guardarEdicion(this, ${id})"><i class="bi bi-check-circle"></i></button>
         <button class="btn btn-sm btn-danger rounded-circle" onclick="cancelar()"><i class="bi bi-x-circle"></i></button>
@@ -95,12 +108,17 @@ function guardarEdicion(boton, id) {
     const fila = boton.closest("tr");
     const inputs = fila.querySelectorAll("input");
 
+    // Rating seleccionado
+    const ratingDiv = fila.querySelector(".star-rating");
+    const rating = parseFloat(ratingDiv.dataset.rating) || 0; // Si no se modificó, quedará en 0
+
     const dto = {
         titulo: inputs[0].value,
         autor: inputs[1].value,
         genero: inputs[2].value,
         año: parseInt(inputs[3].value),
-        finalizacion: inputs[4].value
+        finalizacion: inputs[4].value,
+        rating: rating
     };
 
     fetch(`http://localhost:8080/libro/actualizar/${id}`, {
@@ -123,6 +141,7 @@ function guardarEdicion(boton, id) {
 function cancelar() {
     cargarLibros(); 
 }
+
 // ========================== Registro ============================
 /**
  * Funcion que activa el modo registro al principio de la tabla
@@ -134,30 +153,43 @@ function activarRegistro() {
     fila.id = "fila-registro";
 
     fila.innerHTML = `
-        <td>-</td>
         <td><input type="text" id="nuevoTitulo" placeholder="Título" class="form-control form-control-sm"></td>
         <td><input type="text" id="nuevoAutor" placeholder="Autor" class="form-control form-control-sm"></td>
         <td><input type="text" id="nuevoGenero" placeholder="Género" class="form-control form-control-sm"></td>
         <td><input type="number" id="nuevoAño" placeholder="Año" class="form-control form-control-sm"></td>
         <td><input type="date" id="nuevaFinalizacion" class="form-control form-control-sm"></td>
+        <td>
+            <div class="star-rating nuevoRating">
+                            <i class="bi bi-star-fill" data-value="1"></i>
+                            <i class="bi bi-star-fill" data-value="2"></i>
+                            <i class="bi bi-star-fill" data-value="3"></i>
+                            <i class="bi bi-star-fill" data-value="4"></i>
+                            <i class="bi bi-star-fill" data-value="5"></i>
+            </div>
+        </td>
         <td class="text-end">
             <button class="btn btn-success btn-sm rounded-circle" onclick="guardarRegistro()"><i class="bi bi-check-circle"></i></button>
             <button class="btn btn-sm btn-danger rounded-circle" onclick="cancelar()"><i class="bi bi-x-circle"></i></button>
         </td>
     `;
-
+    activarRating(fila);
     tbody.prepend(fila); // Añade la fila al principio del tbody
 }
 /**
  * Boton de guardar, envia los datos del registro
  */
 function guardarRegistro() {
+
+    const ratingDiv = document.querySelector(".nuevoRating");
+    const rating = parseFloat(ratingDiv.dataset.rating) || 0;
+
     const dto = {
         titulo: document.getElementById("nuevoTitulo").value,
         autor: document.getElementById("nuevoAutor").value,
         genero: document.getElementById("nuevoGenero").value,
         año: parseInt(document.getElementById("nuevoAño").value),
-        finalizacion: document.getElementById("nuevaFinalizacion").value
+        finalizacion: document.getElementById("nuevaFinalizacion").value,
+        rating: rating
     };
 
     fetch("http://localhost:8080/libro/registro", {
@@ -177,7 +209,9 @@ function guardarRegistro() {
     })
     .catch(error => console.error("Error al registrar:", error));
 }
+
 // ========================== Filtros ============================
+
 document.getElementById("btnFiltrar").addEventListener("click", function() {
     const tipo = document.getElementById("tipoFiltro").value;
     const valor = document.getElementById("valorFiltro").value.trim();
@@ -249,4 +283,59 @@ function filtrarPorAño(año){
         .then(response => response.json())
         .then(libros => cargarTabla(libros))
         .catch(error => console.error("Error al cargar libros:", error));
+}
+
+// ========================== Estrellas ============================
+
+function activarRating(contenedor, valorInicial = 0) {
+    const stars = contenedor.querySelectorAll('.star-rating i');
+    const ratingDiv = contenedor.querySelector('.star-rating');
+    
+    ratingDiv.dataset.rating = valorInicial; 
+    pintarEstrellas(stars, valorInicial); //Pinto las estrellas al cargar la tabla
+
+    let valorSeleccionado = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('mousemove', (e) => {
+            if (ratingDiv.classList.contains('disabled')) return;
+            const rect = star.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+
+            const isHalf = x < width / 2;
+            const currentValue = parseInt(star.dataset.value);
+            pintarEstrellas(stars, currentValue - (isHalf ? 0.5 : 0));
+        });
+
+        star.addEventListener('click', (e) => {
+            if (ratingDiv.classList.contains('disabled')) return;
+            const rect = star.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+
+            const isHalf = x < width / 2;
+            valorSeleccionado = parseFloat(star.dataset.value) - (isHalf ? 0.5 : 0);
+
+            ratingDiv.dataset.rating = valorSeleccionado; // Guardo el valor en un atributo de la estrella o del div contenedor
+
+            pintarEstrellas(stars, valorSeleccionado);
+        });
+        
+        if (ratingDiv.classList.contains('disabled')) return;
+        star.addEventListener('mouseout', () => pintarEstrellas(stars, valorSeleccionado));
+    });
+}
+
+function pintarEstrellas(stars, valor) {
+    stars.forEach(star => {
+        const starValue = parseInt(star.dataset.value);
+        if (valor >= starValue) {
+            star.className = 'bi bi-star-fill full';
+        } else if (valor >= (starValue - 0.5)) {
+            star.className = 'bi bi-star-fill half';
+        } else {
+            star.className = 'bi bi-star-fill';
+        }
+    });
 }

@@ -16,22 +16,24 @@ Frontend:
 - Bootstrap 5
 - JavaScript puro (fetch API)
 
-## Funcionalidades actuales (V 0.1)
+## Funcionalidades actuales (V 0.2)
 
 📚 Módulo Libros
 
 CRUD completo:
-- Crear libros
-- Ver listado de libros
-- Editar libros
-- Eliminar libros
+- Crear libros (V 0.1)
+- Ver listado de libros (V 0.1)
+- Editar libros (V 0.1)
+- Eliminar libros (V 0.1)
 
 Filtros disponibles:
-- Por título
-- Por autor
-- Por género
-- Por año de finalización
-- Por mes y año de finalización
+- Por título (V 0.1)
+- Por autor (V 0.1)
+- Por género (V 0.1)
+- Por año de finalización (V 0.1)
+- Por mes y año de finalización (V 0.1)
+
+- Funcionalidad de valoración con estrellas (V.02)
 
 ## Estructura actual
 
@@ -55,7 +57,6 @@ Añadir módulos para:
 - 🎮 Videojuegos
 - 📺 Series
 
-- Sistema de valoración personal con estrellas
 - Registro y gestión de cada tipo de media con sus atributos propio
 - Posible exportación a Android en el futuro
 
@@ -63,7 +64,7 @@ Añadir módulos para:
 
 - Levantar el backend (Spring Boot)
 - Crear la base de datos media_tracker en MySQL
-- Ejecutar el frontend con Live Server o desde Spring Boot usando Thymeleaf (en proceso)
+- Ejecutar el frontend desde el buscador (http://localhost:8080/)
 
 ## Autor - JaviDev707
 

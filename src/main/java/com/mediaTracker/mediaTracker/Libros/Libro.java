@@ -2,6 +2,8 @@ package com.mediaTracker.mediaTracker.Libros;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,10 +19,12 @@ public class Libro {
     private String titulo;
     private String autor;
     private String genero;
+    @JsonProperty("año")
     private int año;
     
     private LocalDate finalizacion;
-
+    private Float rating;
+    
     public Long getId() {
         return this.id;
     }
@@ -69,6 +73,14 @@ public class Libro {
         this.finalizacion = finalizacion;
     }
 
+    public Float getRating() {
+        return this.rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -78,7 +90,7 @@ public class Libro {
             ", genero='" + getGenero() + "'" +
             ", año='" + getAño() + "'" +
             ", finalizacion='" + getFinalizacion() + "'" +
+            ", rating='" + getRating() + "'" +
             "}";
     }
-
 }

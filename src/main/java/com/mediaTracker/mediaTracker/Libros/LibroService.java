@@ -72,6 +72,7 @@ public class LibroService {
         if (dto.autor() != null) libro.setAutor(dto.autor());
         if (dto.genero() != null) libro.setGenero(dto.genero());
         if (dto.finalizacion() != null) libro.setFinalizacion(dto.finalizacion());
+        if (dto.rating() != null) libro.setRating(dto.rating());
 
         System.out.println("===> Actualizando datos..." + libro);
         return libroRepository.save(libro);

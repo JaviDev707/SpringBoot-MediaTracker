@@ -8,11 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- CSS personalizado -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <section id="team" class="section bg-gray-100">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row section-heading justify-content-center text-center wow fadeInUp" data-wow-duration="0.3s" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 0.3s; animation-delay: 0.3s; animation-name: fadeInUp;">
                 <div class="col-lg-8 col-xl-6">
                     <h3 class="h1 bg-primary-after after-50px pb-3 mb-3">Tracker de libros</h3>
@@ -31,7 +31,7 @@
                                 <option value="año">Finalización (año)</option>
                             </select>
                             <input type="text" class="form-control" placeholder="Buscar..." id="valorFiltro">
-                            <button class="btn btn-primary" id="btnFiltrar">Buscar</button>
+                            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
                         </div>
                     </div>
                     <div class="overflow-hidden card table-nowrap table-card">
@@ -43,12 +43,12 @@
                             <table class="table mb-0">
                                 <thead class="small text-uppercase bg-body text-muted">
                                     <tr>
-                                        <th>ID</th>
                                         <th>Título</th>
                                         <th>Autor</th>
                                         <th>Género</th>
                                         <th>Año</th>
                                         <th>Finalización</th>
+                                        <th>Valoración</th>
                                         <th class="text-end">Editar - Borrar</th>
                                     </tr>
                                 </thead>
@@ -62,5 +62,6 @@
             </div>
         </div>
     </section>   
-    <script src="libros.js"></script>
+    <!-- JS -->
+    <script src="/js/libros.js"></script>
 </body> 

@@ -11,6 +11,8 @@ public record LibroDTO(
     String genero,
     Integer año,
     
-    LocalDate finalizacion) {
+    LocalDate finalizacion,
+    Float rating
+    ) {
     
 }

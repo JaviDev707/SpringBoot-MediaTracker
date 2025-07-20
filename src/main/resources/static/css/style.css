@@ -92,6 +92,8 @@ img {
 
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    width: 75%;
+    margin: auto;
 }
 .avatar.sm {
     width: 2.25rem;
@@ -127,4 +129,27 @@ a{
 
 .dropend{
     margin-left: 20px;
+}
+
+.star-rating i {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.star-rating i.full {
+    color: #ffc107;
+}
+
+.star-rating i.half {
+    background: linear-gradient(90deg, #ffc107 50%, #ccc 50%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.star-rating.disabled i {
+    opacity: 0.5;
 }
