@@ -15,4 +15,19 @@ public class HomeController {
     public String libros() {
         return "indexLibros"; // templates/indexLibros.html
     }
+
+    @GetMapping("/videojuego")
+    public String videojuegos(){
+        return "indexVideojuegos"; // templates/indexVideojuegos.html
+    }
+
+    @GetMapping("/pelicula")
+    public String peliculas(){
+        return "indexPeliculas"; // templates/indexPeliculas.html
+    }
+
+    @GetMapping("/serie")
+    public String series(){
+        return "indexSeries"; // templates/indexSeries.html
+    }
 }

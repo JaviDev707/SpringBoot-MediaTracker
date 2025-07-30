@@ -17,7 +17,7 @@ function cargarLibros() {
  */
 function cargarTabla(libros){
     const tbody = document.getElementById("tabla-libros");
-            tbody.innerHTML = ""; // Limpia la tabla
+            tbody.innerHTML = ""; // Limpio la tabla
 
             libros.forEach(libro => {
                 const fila = document.createElement("tr");
@@ -87,8 +87,13 @@ function activarEdicion(boton, id) {
 
     // Convierto las celdas en inputs 
     for (let i = 0; i <= 4; i++) {
-        const valor = celdas[i].innerText;
-        celdas[i].innerHTML = `<input type="text" value="${valor}" class="form-control form-control-sm">`;
+        const valor = celdas[i].innerText.trim();
+
+        if (i === 4) {
+            celdas[i].innerHTML = `<input type="date" value="${valor}" class="form-control form-control-sm">`;
+        } else {
+            celdas[i].innerHTML = `<input type="text" value="${valor}" class="form-control form-control-sm">`;
+        }
     }
 
     const ratingDiv = fila.querySelector('.star-rating');
@@ -110,7 +115,7 @@ function guardarEdicion(boton, id) {
 
     // Rating seleccionado
     const ratingDiv = fila.querySelector(".star-rating");
-    const rating = parseFloat(ratingDiv.dataset.rating) || 0; // Si no se modificó, quedará en 0
+    const rating = parseFloat(ratingDiv.dataset.rating) || 0; // Si no se modificó quedará en 0
 
     const dto = {
         titulo: inputs[0].value,

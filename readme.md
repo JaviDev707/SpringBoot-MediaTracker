@@ -18,13 +18,14 @@ Frontend:
 
 ## Funcionalidades actuales (V 0.2)
 
-📚 Módulo Libros
+📚 Módulo Libros (V 0.1)
+🎮 Módulo Videojuegos (V 0.3)
 
 CRUD completo:
-- Crear libros (V 0.1)
-- Ver listado de libros (V 0.1)
-- Editar libros (V 0.1)
-- Eliminar libros (V 0.1)
+- Crear  (V 0.1)
+- Ver listado (V 0.1)
+- Editar  (V 0.1)
+- Eliminar  (V 0.1)
 
 Filtros disponibles:
 - Por título (V 0.1)

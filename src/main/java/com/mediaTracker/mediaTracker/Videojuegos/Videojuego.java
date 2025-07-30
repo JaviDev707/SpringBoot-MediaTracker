@@ -20,6 +20,7 @@ public class Videojuego {
     private int año;
 
     private LocalDate finalizacion;
+    private float rating;
 
     public Long getId() {
         return this.id;
@@ -68,4 +69,26 @@ public class Videojuego {
     public void setFinalizacion(LocalDate finalizacion) {
         this.finalizacion = finalizacion;
     }
+
+    public float getRating() {
+        return this.rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", titulo='" + getTitulo() + "'" +
+            ", genero='" + getGenero() + "'" +
+            ", plataforma='" + getPlataforma() + "'" +
+            ", año='" + getAño() + "'" +
+            ", finalizacion='" + getFinalizacion() + "'" +
+            ", rating='" + getRating() + "'" +
+            "}";
+    }
+    
 }
