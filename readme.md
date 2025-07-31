@@ -16,10 +16,12 @@ Frontend:
 - Bootstrap 5
 - JavaScript puro (fetch API)
 
-## Funcionalidades actuales (V 0.2)
+## Funcionalidades actuales (V 1.0)
 
 📚 Módulo Libros (V 0.1)
 🎮 Módulo Videojuegos (V 0.3)
+🎬 Módulo Películas (V 1.0)
+📺 Módulo Series (V1.0)
 
 CRUD completo:
 - Crear  (V 0.1)
@@ -53,12 +55,6 @@ Filtros disponibles:
 
 ## Próximos pasos
 
-Añadir módulos para:
-- 🎬 Películas
-- 🎮 Videojuegos
-- 📺 Series
-
-- Registro y gestión de cada tipo de media con sus atributos propio
 - Posible exportación a Android en el futuro
 
 ## Cómo ejecutar el proyecto
