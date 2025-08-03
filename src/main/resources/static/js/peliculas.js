@@ -57,7 +57,7 @@ function cargarTabla(peliculas){
 
 // ========================== Estrellas ============================
 
-function activarRating(contenedor, valorInicial = 0) {
+function activarRating(contenedor, valorInicial) {
     const stars = contenedor.querySelectorAll('.star-rating i');
     const ratingDiv = contenedor.querySelector('.star-rating');
     
@@ -186,6 +186,10 @@ function activarEdicion(boton, id) {
     const fila = boton.closest("tr");
     const celdas = fila.querySelectorAll("td");
 
+    // valor actual del rating 
+    const ratingDivOriginal = fila.querySelector('.star-rating');
+    const valorInicial = parseFloat(ratingDivOriginal.dataset.rating) || 0;
+
     // Convierto las celdas en inputs 
     for (let i = 0; i <= 4; i++) {
         const valor = celdas[i].innerText.trim();
@@ -197,9 +201,10 @@ function activarEdicion(boton, id) {
         }
     }
 
+    // Activo el control interactivo de estrellas
     const ratingDiv = fila.querySelector('.star-rating');
     ratingDiv.classList.remove('disabled'); //Quito el disabled para poder editar las estrellas
-    activarRating(fila);
+    activarRating(fila, valorInicial);
 
     // Cambio los botones por Guardar y Cancelar
     celdas[6].innerHTML = `
@@ -216,7 +221,7 @@ function guardarEdicion(boton, id) {
 
     // Rating seleccionado
     const ratingDiv = fila.querySelector(".star-rating");
-    const rating = parseFloat(ratingDiv.dataset.rating) || 0; // Si no se modificó quedará en 0
+    const rating = parseFloat(ratingDiv.dataset.rating); // Si no se modificó quedará en 0
 
     const dto = {
         titulo: inputs[0].value,

@@ -16,7 +16,7 @@ Frontend:
 - Bootstrap 5
 - JavaScript puro (fetch API)
 
-## Funcionalidades actuales (V 1.0)
+## Funcionalidades (V 1.0)
 
 📚 Módulo Libros (V 0.1)
 🎮 Módulo Videojuegos (V 0.3)
@@ -31,12 +31,12 @@ CRUD completo:
 
 Filtros disponibles:
 - Por título (V 0.1)
-- Por autor (V 0.1)
+- Por autor/plataforma (V 0.1)
 - Por género (V 0.1)
 - Por año de finalización (V 0.1)
 - Por mes y año de finalización (V 0.1)
 
-- Funcionalidad de valoración con estrellas (V.02)
+- Funcionalidad de valoración con estrellas (V 0.2)
 
 ## Estructura actual
 
@@ -62,6 +62,12 @@ Filtros disponibles:
 - Levantar el backend (Spring Boot)
 - Crear la base de datos media_tracker en MySQL
 - Ejecutar el frontend desde el buscador (http://localhost:8080/)
+- Este proyecto utiliza un archivo application-local.yml para mantener fuera del repositorio las credenciales sensibles (usuario y contraseña de la base de datos). Este archivo está ignorado en el .gitignore, por lo tanto debes crearlo manualmente al clonar el proyecto.
+
+## Historial de actualizaciones
+
+- Mejora en el sistema de edicion de estrellas (V 1.1)
+- Credenciales de la Base de datos locales mediante application-local.yml (V 1.1)
 
 ## Autor - JaviDev707
 
