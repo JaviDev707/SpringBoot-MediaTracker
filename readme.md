@@ -68,6 +68,7 @@ Filtros disponibles:
 
 - Mejora en el sistema de edicion de estrellas (V 1.1)
 - Credenciales de la Base de datos locales mediante application-local.yml (V 1.1)
+- Centralizado de seguridad con CorsConfig (V 1.2)
 
 ## Autor - JaviDev707
 
