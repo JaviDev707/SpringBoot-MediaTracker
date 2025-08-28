@@ -39,6 +39,28 @@ Filtros disponibles:
 
 - Funcionalidad de valoración con estrellas (V 0.2)
 
+## Capturas
+
+- Menú principal
+
+![Menu principal](img/index.png)
+
+- Modulo de peliculas
+
+![modulo peliculas](img/mPeliculas.png)
+
+- Boton de agregar (+)
+
+![btn agregar](img/agregar.png)
+
+- Botón de editar (lapiz)
+
+![btn editar](img/editar.png)
+
+- Filtros
+
+![filtro](img/filtroCine.png)
+
 ## Estructura actual
 
 - LibroController → Endpoints REST
