@@ -1,4 +1,4 @@
-## Media Tracker App - Seguimiento de Libros, Series, Películas y Videojuegos (Proyecto en desarrollo)
+## Media Tracker fullstack App - Seguimiento de Libros, Series, Películas y Videojuegos 
 
 Gestor personal donde podrás registrar, listar y filtrar el contenido multimedia que consumas (libros, películas, series y videojuegos).
 
@@ -19,9 +19,9 @@ Frontend:
 
 ## Funcionalidades (V 1.0)
 
-📚 Módulo Libros (V 0.1)
-🎮 Módulo Videojuegos (V 0.3)
-🎬 Módulo Películas (V 1.0)
+📚 Módulo Libros (V 0.1) \
+🎮 Módulo Videojuegos (V 0.3) \
+🎬 Módulo Películas (V 1.0) \
 📺 Módulo Series (V1.0)
 
 CRUD completo:
@@ -45,15 +45,15 @@ Filtros disponibles:
 
 ![Menu principal](img/index.png)
 
-- Modulo de peliculas
+- Módulo de películas 
 
 ![modulo peliculas](img/mPeliculas.png)
 
-- Boton de agregar (+)
+- Botón de agregar (+) - Despliega una nueva fila al principio de la tabla para agregar, los botones cambian por confirmar y cancelar.
 
 ![btn agregar](img/agregar.png)
 
-- Botón de editar (lapiz)
+- Botón de editar (lapiz) - Activa el modo edición en la misma fila, los botones cambian por confirmar y cancelar.
 
 ![btn editar](img/editar.png)
 
