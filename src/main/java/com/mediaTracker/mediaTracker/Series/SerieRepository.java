@@ -14,9 +14,9 @@ public interface SerieRepository extends JpaRepository<Serie, Long>{
     List<Serie> findByGeneroIgnoreCase(String genero);
     List<Serie> findByPlataformaIgnoreCase(String plataforma);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año")
+    @Query("SELECT s FROM Serie s WHERE FUNCTION('YEAR', s.finalizacion) = :año")
     List<Serie> findByAñoFinalizacion(@Param("año") int año);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año AND FUNCTION('MONTH', l.finalizacion) = :mes")
+    @Query("SELECT s FROM Serie s WHERE FUNCTION('YEAR', s.finalizacion) = :año AND FUNCTION('MONTH', s.finalizacion) = :mes")
     List<Serie> findByMesYAñoFinalizacion(@Param("mes") int mes, @Param("año") int año);
 }

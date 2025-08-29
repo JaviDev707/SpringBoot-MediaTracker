@@ -15,10 +15,10 @@ public interface VideojuegoRepository extends JpaRepository<Videojuego, Long>{
     List<Videojuego> findByGeneroIgnoreCase(String genero);
     List<Videojuego> findByPlataformaIgnoreCase(String plataforma);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año")
+    @Query("SELECT v FROM Videojuego v WHERE FUNCTION('YEAR', v.finalizacion) = :año")
     List<Videojuego> findByAñoFinalizacion(@Param("año") int año);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año AND FUNCTION('MONTH', l.finalizacion) = :mes")
+    @Query("SELECT v FROM Videojuego v WHERE FUNCTION('YEAR', v.finalizacion) = :año AND FUNCTION('MONTH', v.finalizacion) = :mes")
     List<Videojuego> findByMesYAñoFinalizacion(@Param("mes") int mes, @Param("año") int año);
 
 }

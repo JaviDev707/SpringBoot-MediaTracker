@@ -14,9 +14,9 @@ public interface PeliculaRepository extends JpaRepository<Pelicula, Long>{
     List<Pelicula> findByGeneroIgnoreCase(String genero);
     List<Pelicula> findByPlataformaIgnoreCase(String plataforma);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año")
+    @Query("SELECT p FROM Pelicula p WHERE FUNCTION('YEAR', p.finalizacion) = :año")
     List<Pelicula> findByAñoFinalizacion(@Param("año") int año);
 
-    @Query("SELECT l FROM Libro l WHERE FUNCTION('YEAR', l.finalizacion) = :año AND FUNCTION('MONTH', l.finalizacion) = :mes")
+    @Query("SELECT p FROM Pelicula p WHERE FUNCTION('YEAR', p.finalizacion) = :año AND FUNCTION('MONTH', p.finalizacion) = :mes")
     List<Pelicula> findByMesYAñoFinalizacion(@Param("mes") int mes, @Param("año") int año);
 }

@@ -61,6 +61,8 @@ Filtros disponibles:
 
 ![filtro](img/filtroCine.png)
 
+![filtro](img/filtroMesAño.png)
+
 ## Estructura actual
 
 - LibroController → Endpoints REST
